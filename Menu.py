@@ -14,5 +14,3 @@ def menu():
 0- Sair''')
   print('-'*35)
 
-  menu()
-
