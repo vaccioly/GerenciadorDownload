@@ -14,3 +14,9 @@ def menu():
 0- Sair''')
   print('-'*35)
 
+def clear():
+    import os
+    if os.name =='nt:
+        os.sytem('cls')
+    else:
+        os.sytem('clear')
