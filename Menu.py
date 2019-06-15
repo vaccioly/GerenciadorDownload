@@ -15,8 +15,8 @@ def menu():
   print('-'*35)
 
 def clear():
-    import os
-    if os.name =='nt:
-        os.sytem('cls')
-    else:
-        os.sytem('clear')
+  import os
+  if os.name == 'nt':
+    os.system('cls')
+  else:
+    os.system('clear')
