@@ -1,11 +1,11 @@
 class computador:
     """esta classe contem um id único para cada objeto instanciado imutável, e as propriedades ip e recurso que podem ser modificadas """
-    id = -1
+    __id = -1
 
 
 
     def __init__(self, ip, recurso):
-        cls.id += 1
+        self.__class__.__id += 1
         self.__id = cls.id
         self.__recurso = recurso
     def setRecurso(self,novo_recurso):
