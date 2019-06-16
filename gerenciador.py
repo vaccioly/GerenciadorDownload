@@ -26,12 +26,12 @@ class gerenciador:
 
     def getLink(self):
         """retorna ao usuário uma string com o valor do link"""
-        return f'Velocidade de coneção   {self.__link}Gb/s'
+        return f'Velocidade de coneção   {self.__link} Gb/s'
 
 
 
 #teste
-gerenciador = gerenciador()
+#gerenciador = gerenciador()
 
-print(gerenciador.setLink.__doc__)
+#print(gerenciador.setLink.__doc__)
 
