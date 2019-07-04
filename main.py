@@ -17,7 +17,7 @@ while True:
 		# 2- Cadastrar banda de internet
 		if opcao == 2:
 			link = gerenciador()
-			valor = int(input('Velecidade que deseja cadastrar: '))
+			valor = float(input('Velecidade que deseja cadastrar: '))
 			link.setLink(valor)
 			print(link.getLink())
 			print("Banda Cadastrada com sucesso!")
@@ -28,6 +28,10 @@ while True:
 
 		# 3-Importar computadores e /ou recursos
 		if opcao == 3:
+			cad = computador()
+			arq = input('Arquivo que deseja importar ? ')
+			print(arq)
+			print(cad.importarComputador(arq))
 			print('Importacao de dados efetuado com sucesso!')
 			time.sleep(3)
 			clear()
@@ -36,6 +40,8 @@ while True:
 
 		# 4- Exportar computadores e /ou recursos
 		if opcao == 4:
+			arq = input('Qual nome do arquivo?')
+			cad.exportarComputador(arq))
 			print('Dados exportados com sucesso!')
 			time.sleep(3)
 			clear()
@@ -43,7 +49,7 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 		# 5- Cadastro / listar os recurso
 		if opcao == 5:
-			print("Gerenciador de Downloads", date.today())
+			print("Cadastro / listar os recurso")
 			time.sleep(3)
 			clear()
 			menu()
@@ -59,6 +65,12 @@ while True:
 		if opcao == 0:
 			print("Programa encerrado com sucesso! ")
 			break
+		if opcao < 0:
+			print("Números negativos não permitido!")
+			time.sleep(3)
+			clear()
+			menu()
+			opcao = int(input('Digite uma opção: '))
 		else:
 			print('Valor fora do intervalo, Apenas opçoes de 0 a 6!!')
 			time.sleep(3)
