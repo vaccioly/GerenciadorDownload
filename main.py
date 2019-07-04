@@ -47,23 +47,23 @@ while True:
 			clear()
 			menu()
 			opcao = int(input('Digite uma opção: '))
-		# 5- Cadastro / listar os recurso
-		if opcao == 5:
-			print("Cadastro / listar os recurso")
+			# 5- Cadastro / listar os recurso
+			if opcao == 5:
+				print("Cadastro / listar os recurso")
 			time.sleep(3)
 			clear()
 			menu()
 			opcao = int(input('Digite uma opção: '))
-		# 6- Cadastrar / remover jobs
-		if opcao == 6:
-			print('Jobs cadastrados / removido com sucesso !')
+			# 6- Cadastrar / remover jobs
+			if opcao == 6:
+				print('Jobs cadastrados / removido com sucesso !')
 			time.sleep(3)
 			clear()
 			menu()
 			opcao = int(input('Digite uma opção: '))
-		# 0 - sair (Encerra o sistema)
-		if opcao == 0:
-			print("Programa encerrado com sucesso! ")
+			# 0 - sair (Encerra o sistema)
+			if opcao == 0:
+				print("Programa encerrado com sucesso! ")
 			break
 		if opcao < 0:
 			print("Números negativos não permitido!")
