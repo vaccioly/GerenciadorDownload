@@ -1,17 +1,17 @@
 class computador:
     """esta classe contem um id único para cada objeto instanciado imutável, e as propriedades ip e recurso que podem ser modificadas """
     __id = -1
+    __ip = 0
 
-
-
-    def __init__(self, ip, recurso):
+    def __init__(self):
         self.__class__.__id += 1
-        self.__id = cls.id
-        self.__recurso = recurso
+        self.__class__.__ip += 1
+        self.__recurso = 'doc.txt'
+
     def setRecurso(self,novo_recurso):
         self.__recurso = novo_recurso
         return f'{self.__recurso}'
-    
+
     def getRecurso(self):
         
         return f'{self.__recurso}'
@@ -21,9 +21,13 @@ class computador:
         return f'{self.__ip}'
 
     def getIp(self):
-        
-        return f'{self.ip}'
-          
+        return f'192.168.168.0.' + str(self.__class__.__ip)
+
+    def getId(self):
+        return f'{self.__class__.__id}'
 
 #teste
-
+c= computador()
+print(c.getIp())
+print(c.getId())
+print(c.getRecurso())
