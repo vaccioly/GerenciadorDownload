@@ -41,7 +41,7 @@ while True:
 		# 4- Exportar computadores e /ou recursos
 		if opcao == 4:
 			arq = input('Qual nome do arquivo?')
-			cad.exportarComputador(arq))
+			cad.exportarComputador(arq)
 			print('Dados exportados com sucesso!')
 			time.sleep(3)
 			clear()
