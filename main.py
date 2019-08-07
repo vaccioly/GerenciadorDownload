@@ -9,6 +9,9 @@ while True:
 		opcao = int(input('Digite uma opção: '))
 		# 1 - cadastro
 		if opcao == 1:
+			descricao = input('Hostname: ')
+			adm = Gerenciador()
+			adm.cadastrarComputador(descricao)
 			print('Cadastro Efetuado com sucesso')
 			time.sleep(3)
 			clear()
@@ -16,7 +19,7 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 		# 2- Cadastrar banda de internet
 		if opcao == 2:
-			link = gerenciador()
+			link = Gerenciador()
 			valor = float(input('Velecidade que deseja cadastrar: '))
 			link.setLink(valor)
 			print(link.getLink())
@@ -28,7 +31,7 @@ while True:
 
 		# 3-Importar computadores e /ou recursos
 		if opcao == 3:
-			cad = computador()
+			cad = Gerenciador()
 			arq = input('Arquivo que deseja importar ? ')
 			print(arq)
 			print(cad.importarComputador(arq))
@@ -40,9 +43,10 @@ while True:
 
 		# 4- Exportar computadores e /ou recursos
 		if opcao == 4:
+			cad = Gerenciador()
 			arq = input('Qual nome do arquivo?')
 			cad.exportarComputador(arq)
-			print('Dados exportados com sucesso!')
+			print('Computadores exportados com sucesso!')
 			time.sleep(3)
 			clear()
 			menu()
