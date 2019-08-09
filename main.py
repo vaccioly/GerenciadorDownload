@@ -2,82 +2,173 @@ from gerenciador import *
 from Menu import *
 import time
 #Esse é o programa principal do projeto do gerenciador de downloads
-
+computadores = []
+recursos = []
+jobs= []
+adm = Gerenciador()
 while True:
 	try:
 		menu() #Imprime na tela as opçoes das funções permitidas pelo sistema
 		opcao = int(input('Digite uma opção: '))
-		# 1 - cadastro
+		# 1- Cadastrar banda larga
 		if opcao == 1:
-			descricao = input('Hostname: ')
-			adm = Gerenciador()
-			adm.cadastrarComputador(descricao)
-			print('Cadastro Efetuado com sucesso')
-			time.sleep(3)
-			clear()
-			menu()
-			opcao = int(input('Digite uma opção: '))
-		# 2- Cadastrar banda de internet
-		if opcao == 2:
 			link = Gerenciador()
-			valor = float(input('Velecidade que deseja cadastrar: '))
+			valor = float(input('Velecidade que deseja cadastrar em Mbps:  '))
 			link.setLink(valor)
 			print(link.getLink())
 			print("Banda Cadastrada com sucesso!")
 			time.sleep(3)
 			clear()
-			menu()
-			opcao = int(input('Digite uma opção: '))
+			continue
 
-		# 3-Importar computadores e /ou recursos
-		if opcao == 3:
-			cad = Gerenciador()
-			arq = input('Arquivo que deseja importar ? ')
-			print(arq)
-			print(cad.importarComputador(arq))
-			print('Importacao de dados efetuado com sucesso!')
-			time.sleep(3)
-			clear()
-			menu()
+		# 2 - Computadores
+		if opcao == 2:
+			menuComputador()
 			opcao = int(input('Digite uma opção: '))
+			# 1 - Cadastrar computador;
+			if opcao == 1:
+				#nome = input(str('Hostname: '))
+				nome = input('Nome do computador:')
+				adm.cadastrarComputador(nome)
+				adm.listarComputadores()
+				print('Cadastro Efetuado com sucesso')
+				time.sleep(3)
+				clear()
+				continue
+			
+			# 2 - Listar Computadores
+			if opcao == 2:
+				print('Lista Computares')
+				adm.listarComputadores()
+				time.sleep(3)
+				clear()
+				continue
 
-		# 4- Exportar computadores e /ou recursos
-		if opcao == 4:
-			cad = Gerenciador()
-			arq = input('Qual nome do arquivo?')
-			cad.exportarComputador(arq)
-			print('Computadores exportados com sucesso!')
-			time.sleep(3)
-			clear()
-			menu()
-			opcao = int(input('Digite uma opção: '))
-			# 5- Cadastro / listar os recurso
-			if opcao == 5:
-				print("Cadastro / listar os recurso")
-			time.sleep(3)
-			clear()
-			menu()
-			opcao = int(input('Digite uma opção: '))
-			# 6- Cadastrar / remover jobs
-			if opcao == 6:
-				print('Jobs cadastrados / removido com sucesso !')
-			time.sleep(3)
-			clear()
-			menu()
-			opcao = int(input('Digite uma opção: '))
-			# 0 - sair (Encerra o sistema)
+			# 3 - Exportar computadores
+			if opcao == 3:
+				arq = input('Qual nome do arquivo?')
+				adm.exportarComputador(arq)
+				print('Computadores exportados com sucesso!')
+				time.sleep(3)
+				clear()
+				continue
+			# 4 - Importar computadores
+			if opcao == 4:
+				adm = Gerenciador()
+				arq = input('Arquivo que deseja importar ? ')
+				print(arq)
+				print(adm.importarComputador(arq))
+				print('Importacao de dados efetuado com sucesso!')
+				time.sleep(3)
+				clear()
+				continue 
+			# 0 - Voltar para menu principal
 			if opcao == 0:
-				print("Programa encerrado com sucesso! ")
+				print('Voltando ao menu Principal')
+				time.sleep(3)
+				clear()
+				continue
+		
+			
+		#Cadastro de RECURSOS
+		if opcao == 3:
+			menuRecursos()
+			opcao = int(input('Digite uma opção: '))
+			#1 - Cadastrar recursos
+			if opcao == 1:
+				nome = input('Informe o nome do arquivo que deseja cadastrar: ')
+				tamanho = input(float('Tamanho do arquivo em kbs:  '))
+				adm.cadastraRecurso(nome, tamanho)
+				print('Arquivo cadastrado com sucesso!')
+				time.sleep(3)
+				clear()
+				continue
+			#2 - Listar recursos
+			if opcao == 2:
+				adm.listarRecurso()
+				time.sleep(3)
+				clear()
+				continue
+			#3 - Exportar recursos
+			if opcao == 3:
+				nome = input('Nome que deseja salvar a lista de Recursos: ')
+				adm.exportarRecurso(nome)
+				print('Arquivo exportado com sucesso!!')
+				time.sleep(3)
+				clear()
+				continue
+			#4 - Importar recursos
+			if opcao == 4:
+				nome = input('Nome da lista de Recursos a ser importada: ')
+				adm.importarRecurso(nome)
+				print('Recursos importados com sucesso!!')
+				time.sleep(3)
+				clear()
+				continue
+
+			#0 - Voltar para menu principal
+			if opcao ==0:
+				print('Voltando ao menu Principal')
+				time.sleep(3)
+				clear()
+				continue
+
+		
+		#Cadastro de Jobs
+		if opcao == 4:
+			menuJobs()
+			opcao = int(input('Digite uma opção: '))
+			#1 - Cadastrar Jobs
+			if opcao == 1:
+				nome = input('Informe o nome do arquivo que deseja cadastrar: ')
+				tamanho = input(float('Tamanho do arquivo em kbs:  '))
+				adm.cadastraJobs(nome, tamanho)
+				print('Arquivo cadastrado com sucesso!')
+				time.sleep(3)
+				clear()
+				continue
+			#2 - Listar Jobs
+			if opcao == 2:
+				adm.listarRecurso()
+				time.sleep(3)
+				clear()
+				continue
+			#3 - Exportar Jobs
+			if opcao == 3:
+				nome = input('Nome que deseja salvar a lista de Recursos: ')
+				adm.exportarRecurso(nome)
+				print('Arquivo exportado com sucesso!!')
+				time.sleep(3)
+				clear()
+				continue
+			#4 - Importar Jobs
+			if opcao == 4:
+				nome = input('Nome da lista de Recursos a ser importada: ')
+				adm.importarRecurso(nome)
+				print('Recursos importados com sucesso!!')
+				time.sleep(3)
+				clear()
+				continue
+
+			#0 - Voltar para menu principal
+			if opcao ==0:
+				print('Voltando ao menu Principal')
+				time.sleep(3)
+				clear()
+				continue
+
+		
+		# 0 - sair (Encerra o sistema)
+		if opcao == 0:
+			print("Programa encerrado com sucesso! ")
 			break
 		if opcao < 0:
 			print("Números negativos não permitido!")
-			time.sleep(3)
+			time.sleep(4)
 			clear()
-			menu()
-			opcao = int(input('Digite uma opção: '))
 		else:
-			print('Valor fora do intervalo, Apenas opçoes de 0 a 6!!')
-			time.sleep(3)
+			print('Opção não disponivel, Tente novamente!!')
+			time.sleep(4)
 			clear()
 	except ValueError:
 		print('Letras e caracteres nao permitido, apenas numeros inteiros')
@@ -87,7 +178,11 @@ while True:
 		print('Tipo digitado invalido')
 		time.sleep(3)
 		clear()
+	except NameError:
+		print('Nome não definido, favor verifique a ortografia e tente novamente!')
+		time.sleep(3)
+		clear()
 	except:
-		print('Nossos engenheiro irao analisar o problema!')
+		print('Nossos engenheiros irão analisar o problema!')
 		time.sleep(3)
 		clear()
