@@ -1,18 +1,42 @@
 from datetime import date
 """Solicita a opção do Programa Principal"""
 """Funções do Menu!!!"""
+
 def menu():
   print("Gerenciador de Downloads", date.today())
   print('-'*35)
   print(''' Opções:
-1- Cadastro computadores:
-2- Cadastro banda de Internet:
-3- Importar computadores e /ou recursos
-4- Exportar computadores e /ou recursos
-5- Cadastrar / listar recursos
-6- Cadastrar / remover jobs
-0- Sair''')
+1- Cadastrar banda larga;
+2- Computadores;
+3- Recursos;
+4- Jobs;
+0- Sair do programa;''')
   print('-'*35)
+
+def menuComputador():
+  print(''' Funções para Computadores
+  1 - Cadastrar.
+  2 - Listar.
+  3 - Exportar.
+  4 - Importar.
+  0 - Voltar para menu principal''')
+  print('-'*35) 
+
+def menuRecursos():
+  print('''Funções para Recursos/Arquivos.
+  1 - Cadastrar.
+  2 - Listar.
+  3 - Exportar.
+  4 - Importar.
+  0 - Voltar para menu principal''')
+
+def menuJobs():
+  print('''Funções para Jobs.
+  1 - Cadastrar.
+  2 - Listar.
+  3 - Exportar.
+  4 - Importar.
+  0 - Voltar para menu principal''')
 
 def clear():
   import os
