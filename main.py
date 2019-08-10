@@ -54,10 +54,8 @@ while True:
 				continue
 			# 4 - Importar computadores
 			if opcao == 4:
-				adm = Gerenciador()
 				arq = input('Arquivo que deseja importar ? ')
-				print(arq)
-				print(adm.importarComputador(arq))
+				adm.importarComputador(arq)
 				print('Importacao de dados efetuado com sucesso!')
 				time.sleep(3)
 				clear()
@@ -76,9 +74,9 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 			#1 - Cadastrar recursos
 			if opcao == 1:
-				nome = input('Informe o nome do arquivo que deseja cadastrar: ')
+				nome = input(str('Informe o nome do arquivo que deseja cadastrar: '))
 				tamanho = input(float('Tamanho do arquivo em kbs:  '))
-				adm.cadastraRecurso(nome, tamanho)
+				adm.cadastrarRecurso(nome, tamanho)
 				print('Arquivo cadastrado com sucesso!')
 				time.sleep(3)
 				clear()
@@ -157,7 +155,10 @@ while True:
 				clear()
 				continue
 
-		
+		#5 - Iniciar downlads
+		if opcao == 5:
+			print('Downloads iniciados')
+
 		# 0 - sair (Encerra o sistema)
 		if opcao == 0:
 			print("Programa encerrado com sucesso! ")

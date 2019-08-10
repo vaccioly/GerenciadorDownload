@@ -10,19 +10,9 @@ class Computador:
         self.__ip = f'192.168.168.0.' + str(self.__class__.__ip)
         self.__id = self.__class__.__id
 
-
-    '''def setRecurso(self, novo_recurso):
-        self.__recurso = novo_recurso
-        return f'{self.__recurso}'
-
-    def getRecurso(self):
-        return f'{self.__recurso}'
-    '''
-    
-
     def setIp(self,novo_ip):
         self.__ip = novo_ip
-        return f'{self.__ip}'
+        #return f'{self.__ip}'
 
     def getIp(self):
         return self.__ip
