@@ -13,7 +13,7 @@ while True:
 		# 1- Cadastrar banda larga
 		if opcao == 1:
 			link = Gerenciador()
-			valor = float(input('Velecidade que deseja cadastrar em Mbps:  '))
+			valor = float(input('Velocidade que deseja cadastrar em Mbps: '))
 			link.setLink(valor)
 			print(link.getLink())
 			print("Banda Cadastrada com sucesso!")
@@ -27,7 +27,6 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 			# 1 - Cadastrar computador;
 			if opcao == 1:
-				#nome = input(str('Hostname: '))
 				nome = input('Nome do computador:')
 				adm.cadastrarComputador(nome)
 				adm.listarComputadores()
@@ -38,7 +37,6 @@ while True:
 			
 			# 2 - Listar Computadores
 			if opcao == 2:
-				print('Lista Computares')
 				adm.listarComputadores()
 				time.sleep(3)
 				clear()
@@ -46,7 +44,7 @@ while True:
 
 			# 3 - Exportar computadores
 			if opcao == 3:
-				arq = input('Qual nome do arquivo?')
+				arq = input('Qual nome do arquivo? ')
 				adm.exportarComputador(arq)
 				print('Computadores exportados com sucesso!')
 				time.sleep(3)
@@ -74,8 +72,8 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 			#1 - Cadastrar recursos
 			if opcao == 1:
-				nome = input(str('Informe o nome do arquivo que deseja cadastrar: '))
-				tamanho = input(float('Tamanho do arquivo em kbs:  '))
+				nome = input('Informe o nome do arquivo que deseja cadastrar: ')
+				tamanho = float(input('Tamanho do arquivo em kbs:  '))
 				adm.cadastrarRecurso(nome, tamanho)
 				print('Arquivo cadastrado com sucesso!')
 				time.sleep(3)
@@ -112,29 +110,29 @@ while True:
 				continue
 
 		
-		#Cadastro de Jobs
+	#Cadastro de Jobs
 		if opcao == 4:
 			menuJobs()
 			opcao = int(input('Digite uma opção: '))
 			#1 - Cadastrar Jobs
 			if opcao == 1:
 				nome = input('Informe o nome do arquivo que deseja cadastrar: ')
-				tamanho = input(float('Tamanho do arquivo em kbs:  '))
-				adm.cadastraJobs(nome, tamanho)
+				tamanho = float(input('Tamanho do arquivo em kbs:  '))
+				adm.cadastrarJobs(nome, tamanho)
 				print('Arquivo cadastrado com sucesso!')
 				time.sleep(3)
 				clear()
 				continue
 			#2 - Listar Jobs
 			if opcao == 2:
-				adm.listarRecurso()
+				adm.listarJobs()
 				time.sleep(3)
 				clear()
 				continue
 			#3 - Exportar Jobs
 			if opcao == 3:
 				nome = input('Nome que deseja salvar a lista de Recursos: ')
-				adm.exportarRecurso(nome)
+				adm.exportarJobs(nome)
 				print('Arquivo exportado com sucesso!!')
 				time.sleep(3)
 				clear()
@@ -142,7 +140,7 @@ while True:
 			#4 - Importar Jobs
 			if opcao == 4:
 				nome = input('Nome da lista de Recursos a ser importada: ')
-				adm.importarRecurso(nome)
+				adm.importarJobs(nome)
 				print('Recursos importados com sucesso!!')
 				time.sleep(3)
 				clear()
@@ -155,7 +153,7 @@ while True:
 				clear()
 				continue
 
-		#5 - Iniciar downlads
+		#5 - Iniciar downloads
 		if opcao == 5:
 			print('Downloads iniciados')
 
