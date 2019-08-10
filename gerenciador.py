@@ -19,6 +19,17 @@ class Gerenciador:
         self.computadores = []
         self.recursos = []
         self.jobs =[]
+            
+#BANDA LARGA
+    def setLink(self, link):
+        """Modifica a velocidade do link e retorna uma string dessa atualização"""
+        self.__link = link
+        return str(self.__link)
+
+    def getLink(self):
+        """retorna ao usuário uma string com o valor do link"""
+        return f'Velocidade de conexão   {self.__link} Mb/s'
+
 # COMPUTADORES
     def cadastrarComputador(self,nome):
         try:
@@ -36,12 +47,23 @@ class Gerenciador:
             for c in self.computadores:
                 print (c)
       
+    def exportarComputador(self, nome ='Teste'):
+        with open(nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+            cabecalho = ['Identificação', 'IP', 'Descrição']
+            arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
+            for pc in self.computadores:
+                arquivos.writerow({'Identificação': pc.getId(), 'IP': pc.getIp(),'Descrição': pc.getDescricao()})
+            #arquivos.writeheader() Linha para adicionar o cabecalho do arquivo    
+
     def importarComputador(self, arquivo):
         try:
+            matriz = []
             with open(arquivo + '.csv','r') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
-                    self.computadores.append(row)
+                    matriz.append(row)
+                for i in range (len(matriz)):
+                    self.computadores.append(Computador(matriz[i][2]))
                     print(row)
             return
         except FileNotFoundError:
@@ -49,26 +71,7 @@ class Gerenciador:
         except NameError:
             raise gerenciadorException(f'Arquivo não definido.')
         except:
-            raise
-
-    def exportarComputador(self, nome ='Teste'):
-        with open(nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
-            cabecalho = ['Identificação', 'IP', 'Descrição']
-            arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
-            for pc in self.computadores:
-                arquivos.writerow({'Identificação': pc.getId(), 'IP': pc.getIp(),'Descrição': pc.getDescricao()})
-                
-                #arquivos.writeheader() Linha para adicionar o cabecalho do arquivo
-            
-#BANDA LARGA
-    def setLink(self, link):
-        """Modifica a velocidade do link e retorna uma string dessa atualização"""
-        self.__link = link
-        return str(self.__link)
-
-    def getLink(self):
-        """retorna ao usuário uma string com o valor do link"""
-        return f'Velocidade de coneção   {self.__link} Mb/s'
+            raise            
 
 # RECURSOS
     def cadastrarRecurso(self, novo, tamanho):
@@ -82,8 +85,11 @@ class Gerenciador:
         self.computadores.append(pc)'''
         
     def listarRecurso(self):
-        for c in self.recursos:
-            print (c)
+        if len(self.recursos) ==0:
+            print ('Lista recursos vazia, favor efetuar o cadstro')
+        else:
+            for c in self.recursos:
+                print (c)
     
     def exportarRecurso(self,arquivo):
         with open(arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
@@ -107,14 +113,15 @@ class Gerenciador:
             raise
 
 # JOBS
-def cadastrarJobs(self,nome):
-    try:
-        job = Computador(nome)
-        self.jobs.append(job)
-    except IndexError:
-        raise gerenciadorException (f'Tipo de cadastro inválido!')
-    except:
-        raise
+    def cadastrarJobs(self,nome):
+        try:
+            job = Computador(nome)
+            self.jobs.append(job)
+        except IndexError:
+            raise gerenciadorException (f'Tipo de cadastro inválido!')
+        except:
+            raise
+    
     def listarJobs(self):
         for c in self.jobs:
             print (c)
