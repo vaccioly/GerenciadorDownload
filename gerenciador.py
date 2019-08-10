@@ -28,7 +28,6 @@ class Gerenciador:
             raise gerenciadorException (f'Tipo de cadastro inválido!')
         except:
             raise
-
     
     def listarComputadores(self):
         if len(self.computadores) == 0:
@@ -38,14 +37,13 @@ class Gerenciador:
                 print (c)
         
 
-
     def importarComputador(self, arquivo):
         try:
-            with open(arquivo + '.csv', newline='') as csvfile:
+            with open(arquivo + '.csv','r') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     print(row)
-                print('Importado com sucesso!')
+            return
         except FileNotFoundError:
             raise gerenciadorException (f'Arquivo não encontrado ou não existe, favor verifique o nome!')
         except NameError:
@@ -54,17 +52,13 @@ class Gerenciador:
             raise
 
     def exportarComputador(self, nome ='Teste'):
-        with open(nome + '.csv', 'w', newline='', encoding='utf-8') as csvfile:
+        with open(nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Identificação', 'IP', 'Descrição']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
-            arquivos.writeheader()
-            #write.writerow({'Identificacao':pc.getId()})
-            #arquivos.writerow({'Identificação': Computador.__class__.__id, 'IP': '192.168.0.' + Computador.__class__.__ip,'Recurso': self.__recurso})
-            #print('Exportado com sucesso!!!! ')
             for pc in self.computadores:
-                #print(i.getIp(),i.getId())
                 arquivos.writerow({'Identificação': pc.getId(), 'IP': pc.getIp(),'Descrição': pc.getDescricao()})
-            #print('Computadores exportado com sucesso!!!!')
+            #arquivos.writeheader() Linha para adicionar o cabecalho do arquivo
+            
 
     def setLink(self, link):
         """Modifica a velocidade do link e retorna uma string dessa atualização"""
@@ -93,24 +87,19 @@ class Gerenciador:
     
     def exportarRecurso(self,arquivo):
         with open(arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
-            cabecalho = ['Identificação', 'IP', 'Descrição']
+            cabecalho = ['Descrição', 'Tamanho']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
-            arquivos.writeheader()
-            #write.writerow({'Identificacao':pc.getId()})
-            #arquivos.writerow({'Identificação': Computador.__class__.__id, 'IP': '192.168.0.' + Computador.__class__.__ip,'Recurso': self.__recurso})
-            #print('Exportado com sucesso!!!! ')
-            for pc in self.recurso:
-                #print(i.getIp(),i.getId())
-                arquivos.writerow({'Identificação': pc.getId(), 'IP': pc.getIp(),'Descrição': pc.getDescricao()})
-            #print('Computadores exportado com sucesso!!!!')
+            #arquivos.writeheader()
+            for rec in self.recurso:
+                arquivos.writerow({'Descrição': rec.getRecurso(), 'Tamanho': rec.getTamanho()})
+           
 
     def importarRecurso(self,arquivo):
         try:
-            with open(arquivo + '.csv', newline='') as csvfile:
+            with open(arquivo + '.csv','r' newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     print(row)
-                print('Importado com sucesso!')
         except FileNotFoundError:
             raise gerenciadorException (f'Arquivo não encontrado ou não existe, favor verifique o nome!')
         except NameError:
@@ -120,7 +109,6 @@ class Gerenciador:
 
 '''
 ##testes
-
 #adm.cadastrarComputador('ifpb01')
 #adm.listarComputadores()
 #adm.importarComputador(testw)
