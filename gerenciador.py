@@ -38,16 +38,11 @@ class Gerenciador:
       
     def importarComputador(self, arquivo):
         try:
-            for linha in open(arquivo+'.csv', 'r'):
-                tokens = linha.split(',')
-                for t in tokens:
-                    self.computadores.append(tokens)
-                    Computador.setDescricao= tokens[2]
-                    print(t)
-            '''with open(arquivo + '.csv','r') as csvfile:
+            with open(arquivo + '.csv','r') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
-                    print(row)'''
+                    self.computadores.append(row)
+                    print(row)
             return
         except FileNotFoundError:
             raise gerenciadorException (f'Arquivo não encontrado ou não existe, favor verifique o nome!')
