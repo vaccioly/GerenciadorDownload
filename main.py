@@ -8,14 +8,15 @@ jobs= []
 adm = Gerenciador()
 while True:
 	try:
+		#clear()
 		menu() #Imprime na tela as opçoes das funções permitidas pelo sistema
 		opcao = int(input('Digite uma opção: '))
 		# 1- Cadastrar banda larga
 		if opcao == 1:
-			link = Gerenciador()
+			#link = Gerenciador()
 			valor = float(input('Velocidade que deseja cadastrar em Mbps: '))
-			link.setLink(valor)
-			print(link.getLink())
+			adm.setLink(valor)
+			print(adm.getLink())
 			print("Banda Cadastrada com sucesso!")
 			time.sleep(3)
 			clear()
@@ -27,7 +28,7 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 			# 1 - Cadastrar computador;
 			if opcao == 1:
-				nome = input('Nome do computador:')
+				nome = input('Nome do computador: ')
 				adm.cadastrarComputador(nome)
 				adm.listarComputadores()
 				print('Cadastro Efetuado com sucesso')
@@ -50,14 +51,16 @@ while True:
 				time.sleep(3)
 				clear()
 				continue
+
 			# 4 - Importar computadores
 			if opcao == 4:
-				arq = input('Arquivo que deseja importar ? ')
+				arq = input('Arquivo que deseja importar? ')
 				adm.importarComputador(arq)
 				print('Importacao de dados efetuado com sucesso!')
 				time.sleep(3)
 				clear()
 				continue 
+
 			# 0 - Voltar para menu principal
 			if opcao == 0:
 				print('Voltando ao menu Principal')
@@ -73,7 +76,7 @@ while True:
 			#1 - Cadastrar recursos
 			if opcao == 1:
 				nome = input('Informe o nome do arquivo que deseja cadastrar: ')
-				tamanho = float(input('Tamanho do arquivo em kbs:  '))
+				tamanho = float(input('Tamanho do arquivo em kbs: '))
 				adm.cadastrarRecurso(nome, tamanho)
 				print('Arquivo cadastrado com sucesso!')
 				time.sleep(3)
@@ -116,17 +119,18 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 			#1 - Cadastrar Jobs
 			if opcao == 1:
-				nome = input('Informe o nome do arquivo que deseja cadastrar: ')
-				tamanho = float(input('Tamanho do arquivo em kbs:  '))
-				adm.cadastrarJobs(nome, tamanho)
-				print('Arquivo cadastrado com sucesso!')
+				idpc = int(input('Id do computador: '))
+				#tamanho = float(input('Tamanho do arquivo em kbs:  '))
+				re = int(input('Recurso deseja cadastrar: '))
+				adm.cadastrarJobs(idpc, re)
+				print('Jobs cadastrado com sucesso!')
 				time.sleep(3)
 				clear()
 				continue
 			#2 - Listar Jobs
 			if opcao == 2:
 				adm.listarJobs()
-				time.sleep(3)
+				time.sleep(5)
 				clear()
 				continue
 			#3 - Exportar Jobs

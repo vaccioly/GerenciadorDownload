@@ -1,5 +1,6 @@
 from computador import *
 from recurso import *
+import Job
 import csv
 
 class gerenciadorException(Exception):
@@ -19,16 +20,17 @@ class Gerenciador:
         self.computadores = []
         self.recursos = []
         self.jobs =[]
+        self.__link = 100
             
 #BANDA LARGA
     def setLink(self, link):
         """Modifica a velocidade do link e retorna uma string dessa atualização"""
         self.__link = link
-        return str(self.__link)
+        #return str(self.__link)
 
     def getLink(self):
         """retorna ao usuário uma string com o valor do link"""
-        return f'Velocidade de conexão   {self.__link} Mb/s'
+        return f'Velocidade de conexão {self.__link} Mb/s'
 
 # COMPUTADORES
     def cadastrarComputador(self,nome):
@@ -96,15 +98,20 @@ class Gerenciador:
             cabecalho = ['Descrição', 'Tamanho']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             #arquivos.writeheader()
-            for rec in self.recurso:
+            for rec in self.recursos:
                 arquivos.writerow({'Descrição': rec.getRecurso(), 'Tamanho': rec.getTamanho()})
            
     def importarRecurso(self,arquivo):
         try:
+            documentos = []
             with open(arquivo + '.csv','r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
+                    documentos.append(row)
+                for i in range (len(documentos)):
+                    self.recursos.append(Recurso(documentos[i][2]))
                     print(row)
+            return        
         except FileNotFoundError:
             raise gerenciadorException (f'Arquivo não encontrado ou não existe, favor verifique o nome!')
         except NameError:
@@ -113,49 +120,68 @@ class Gerenciador:
             raise
 
 # JOBS
-    def cadastrarJobs(self,nome):
+    def povoamento(self):
+        if len(self.jobs) == 0:
+            print ('Jobs não associados, ou vazia')
+        else:
+            pv = len(self.jobs) // self.__link
+            return float(pv)
+
+    def cadastrarJobs(self, pc, arquivo):
         try:
-            job = Computador(nome)
+            pv = len(self.jobs) // self.__link
+            job = Job(self.computadores[pc],self.recursos[arquivo],pv)
             self.jobs.append(job)
+            return self.jobs
         except IndexError:
             raise gerenciadorException (f'Tipo de cadastro inválido!')
         except:
             raise
     
     def listarJobs(self):
-        for c in self.jobs:
-            print (c)
+        if len(self.jobs)==0:
+            print('Jobs não cadastrados')
+        for j in self.jobs:
+            print (j)
 
     def exportarJobs(self,arquivo):
         with open(arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
-            cabecalho = ['Descrição', 'Tamanho']
+            cabecalho = ['Trabalhos', 'Arquivo','Banda']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             #arquivos.writeheader()
-            for job in self.jobs:
-                arquivos.writerow({'Descrição': job.getJobs(), 'Tamanho': job.getJobs()})
-        
+            for i in self.jobs:
+                arquivos.writerow({'Trabalhos': job.getJob(),'Arquivo': job.getArquivo(),'Banda': job.getBanda()})
+                #Jobs: {self.__job}\nRecursos: {self.__arquivo}\nBanda: {self.__banda}
     def importarJobs(self,arquivo):
         try:
+            trabalhos =[]
             with open(arquivo + '.csv','r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
+                    trabalhos.append(row)
+                for i in range (len(trabalhos)):
+                    self.jobs.append(Jobs(trabalhos[i][2]))
                     print(row)
+            return
         except FileNotFoundError:
             raise gerenciadorException (f'Arquivo não encontrado ou não existe, favor verifique o nome!')
         except NameError:
             raise gerenciadorException(f'Arquivo não definido.')
         except:
             raise
+    
+   
+                
 
 '''
-##testes
-#adm.cadastrarComputador('ifpb01')
-#adm.listarComputadores()
+adm= Gerenciador()
+adm.cadastrarComputador('ifpb01')
+adm.listarComputadores()
 #adm.importarComputador(testw)
-#adm.cadastrarRecurso('documento.txt',1500)
-#print(adm.listarRecurso())
-#adm.exportarComputador('teste')
-adm = Gerenciador()
+adm.cadastrarRecurso('documento.txt',1500)
+print(adm.listarRecurso())
+adm.exportarComputador('teste')
+#adm = Gerenciador()
 print('Recurso')
 adm.cadastrarRecurso('Bola.doc',7800)
 adm.cadastrarRecurso('Sinuca.mp3',3309)
@@ -164,4 +190,23 @@ print('Computador')
 adm.cadastrarComputador('ifpb01')
 adm.cadastrarComputador('ifpb')
 adm.listarComputadores()
-'''
+print(adm.getLink())
+adm.setLink(50)
+print(adm.getLink())
+
+adm = Gerenciador()
+
+adm.cadastrarComputador('vinicius')
+
+adm.cadastrarRecurso('libreoffice.tar',3500)
+
+adm.cadastrarJobs(0,0)
+
+#adm.listarJobs()
+adm.cadastrarComputador('ggrr')
+
+adm.cadastrarRecurso('doc.doc',4000)
+
+adm.cadastrarJobs(1,1)
+
+adm.listarJobs()'''

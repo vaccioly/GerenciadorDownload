@@ -29,7 +29,7 @@ class Computador:
 
     def __str__(self):
         #return f'Id: {self.__id} \nIP: {self.__ip} \nDescrição: {self.__descricao}'
-        return f'{self.__id} {self.__ip} {self.__descricao}'
+        return f'Identificação: {self.__id}\nIp: {self.__ip}\nDescrição: {self.__descricao}'
 
 """#teste
 c= computador()
