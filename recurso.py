@@ -18,7 +18,7 @@ class Recurso:
         return f'{self.__tamanho}'
 
     def __str__(self):
-        return f'Descricao{self.__recurso} Tamanho {self.__tamanho} Kbs'
+        return f'Arquivo: {self.__recurso}\nTamanho: {self.__tamanho} Kbps'
         #print (f'Descricao{self.__recurso} Tamanho {self.__tamanho} Kbs')
 
 
