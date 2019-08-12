@@ -1,4 +1,6 @@
-#Projeto Gerinciador de Downloads
+#Projeto exclusivo para fins academico!
+
+#Gerenciador de Downloads!
 
 #Alunos:
 - Accioly,Vinicius
