@@ -1,6 +1,6 @@
 from computador import *
 from recurso import *
-import Job
+from jobs import *
 import csv
 
 class gerenciadorException(Exception):
@@ -48,9 +48,10 @@ class Gerenciador:
         else:
             for c in self.computadores:
                 print (c)
+                print('')
       
     def exportarComputador(self, nome ='Teste'):
-        with open(nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(r"~/GerenciadorDownload/Exportados/"+ nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Identificação', 'IP', 'Descrição']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             for pc in self.computadores:
@@ -60,7 +61,7 @@ class Gerenciador:
     def importarComputador(self, arquivo):
         try:
             matriz = []
-            with open(arquivo + '.csv','r') as csvfile:
+            with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv','r') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     matriz.append(row)
@@ -94,7 +95,7 @@ class Gerenciador:
                 print (c)
     
     def exportarRecurso(self,arquivo):
-        with open(arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Descrição', 'Tamanho']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             #arquivos.writeheader()
@@ -104,7 +105,7 @@ class Gerenciador:
     def importarRecurso(self,arquivo):
         try:
             documentos = []
-            with open(arquivo + '.csv','r', newline='') as csvfile:
+            with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv','r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     documentos.append(row)
@@ -124,12 +125,13 @@ class Gerenciador:
         if len(self.jobs) == 0:
             print ('Jobs não associados, ou vazia')
         else:
-            pv = len(self.jobs) // self.__link
+            pv = self.__link / len(self.jobs)
+            print(pv)
             return float(pv)
 
     def cadastrarJobs(self, pc, arquivo):
         try:
-            pv = len(self.jobs) // self.__link
+            pv = self.__link / len(self.jobs)
             job = Job(self.computadores[pc],self.recursos[arquivo],pv)
             self.jobs.append(job)
             return self.jobs
@@ -143,19 +145,21 @@ class Gerenciador:
             print('Jobs não cadastrados')
         for j in self.jobs:
             print (j)
+            print('')
 
     def exportarJobs(self,arquivo):
-        with open(arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Trabalhos', 'Arquivo','Banda']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             #arquivos.writeheader()
-            for i in self.jobs:
+            for job in self.jobs:
                 arquivos.writerow({'Trabalhos': job.getJob(),'Arquivo': job.getArquivo(),'Banda': job.getBanda()})
                 #Jobs: {self.__job}\nRecursos: {self.__arquivo}\nBanda: {self.__banda}
+    
     def importarJobs(self,arquivo):
         try:
             trabalhos =[]
-            with open(arquivo + '.csv','r', newline='') as csvfile:
+            with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv','r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     trabalhos.append(row)
@@ -193,20 +197,13 @@ adm.listarComputadores()
 print(adm.getLink())
 adm.setLink(50)
 print(adm.getLink())
-
 adm = Gerenciador()
-
 adm.cadastrarComputador('vinicius')
-
 adm.cadastrarRecurso('libreoffice.tar',3500)
-
 adm.cadastrarJobs(0,0)
-
 #adm.listarJobs()
 adm.cadastrarComputador('ggrr')
-
 adm.cadastrarRecurso('doc.doc',4000)
-
 adm.cadastrarJobs(1,1)
-
-adm.listarJobs()'''
+adm.listarJobs()
+'''

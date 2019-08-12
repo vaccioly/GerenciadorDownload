@@ -23,7 +23,7 @@ class Job:
         #return f'{self.__tamanho}'
 
     def getArquivo(self):
-        return self.__arquivo}
+        return self.__arquivo
 
     def __str__(self):
         return f'Jobs: {self.__job}\nRecursos: {self.__arquivo}\nBanda: {self.__banda} Kbs'
