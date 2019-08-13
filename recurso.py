@@ -27,7 +27,7 @@ class Recurso(Computador):
         #print (f'Descricao{self.__recurso} Tamanho {self.__tamanho} Kbs')
 
 
-
+""" teste
 a = Recurso('circulo.jpg',100)
 
 a.setIp('192.168.0.1')
@@ -37,4 +37,4 @@ a.setId('0')
 
 print(a)
 print(a.getIp())
-print(a.getId())
+print(a.getId())"""

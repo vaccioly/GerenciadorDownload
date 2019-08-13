@@ -1,8 +1,10 @@
 class Job:
     def __init__(self, pc,recurso):
+        """O atributo "__concluido" indica que o job foi finalizado.""" 
         self.__job = pc
         self.__arquivo = recurso
         self.__banda = 10
+        self.__concluido = False 
 
     def setJob(self, novo_job):
         self.__job = novo_job
@@ -24,6 +26,10 @@ class Job:
 
     def getArquivo(self):
         return self.__arquivo
+
+
+    def setConcluido(self):
+        pass
 
     def __str__(self):
         return f'Jobs: {self.__job}\nRecursos: {self.__arquivo}\nBanda: {self.__banda} Kbs'
