@@ -185,7 +185,7 @@ while True:
 		print('Nome não definido, favor verifique a ortografia e tente novamente!')
 		time.sleep(3)
 		clear()
-	except:
-		print('Nossos engenheiros irão analisar o problema!')
-		time.sleep(3)
-		clear()
+	#except:
+	#	print('Nossos engenheiros irão analisar o problema!')
+	#	time.sleep(3)
+	#	clear()

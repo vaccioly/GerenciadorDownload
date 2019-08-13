@@ -1,8 +1,8 @@
 class Job:
-    def __init__(self, pc,recurso, banda):
+    def __init__(self, pc,recurso):
         self.__job = pc
         self.__arquivo = recurso
-        self.__banda = banda
+        self.__banda = 10
 
     def setJob(self, novo_job):
         self.__job = novo_job

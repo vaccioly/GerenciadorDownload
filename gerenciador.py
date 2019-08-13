@@ -126,19 +126,19 @@ class Gerenciador:
             print ('Jobs não associados, ou vazia')
         else:
             pv = self.__link / len(self.jobs)
-            print(pv)
+            #print(pv)
             return float(pv)
 
     def cadastrarJobs(self, pc, arquivo):
-        try:
-            pv = self.__link / len(self.jobs)
-            job = Job(self.computadores[pc],self.recursos[arquivo],pv)
-            self.jobs.append(job)
-            return self.jobs
-        except IndexError:
-            raise gerenciadorException (f'Tipo de cadastro inválido!')
-        except:
-            raise
+        #try:
+        #pv = self.__link / (len(self.jobs))
+        job = Job(self.computadores[pc],self.recursos[arquivo])
+        self.jobs.append(job)
+        return self.jobs
+        #except IndexError:
+        #    raise gerenciadorException (f'Tipo de cadastro inválido!')
+        #except:
+        #    raise
     
     def listarJobs(self):
         if len(self.jobs)==0:
@@ -148,7 +148,7 @@ class Gerenciador:
             print('')
 
     def exportarJobs(self,arquivo):
-        with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(r"/home/viniciusaccioly/GerenciadorDownload/Exportados/" + arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Trabalhos', 'Arquivo','Banda']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             #arquivos.writeheader()
