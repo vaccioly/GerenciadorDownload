@@ -1,7 +1,12 @@
-class Recurso:
+from computador import Computador
+
+class Recurso(Computador):
     def __init__(self, arquivo= None, tamanho= None):
+        Computador.__init__(self)
         self.__recurso = arquivo
         self.__tamanho = tamanho
+        
+
 
     def setRecurso(self, novo_recurso):
         self.__recurso = novo_recurso
@@ -22,8 +27,14 @@ class Recurso:
         #print (f'Descricao{self.__recurso} Tamanho {self.__tamanho} Kbs')
 
 
-'''rc = Recurso()
-rc.setRecurso('bola.mp4')
-print(rc.getRecurso())
-rc.setTamanho(7480)
-print(rc.getTamanho())'''
+
+a = Recurso('circulo.jpg',100)
+
+a.setIp('192.168.0.1')
+
+a.setId('0')
+
+
+print(a)
+print(a.getIp())
+print(a.getId())

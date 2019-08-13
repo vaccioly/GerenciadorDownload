@@ -14,6 +14,13 @@ class Computador:
         self.__ip = novo_ip
         #return f'{self.__ip}'
 
+
+    def setId(self,novo_id):
+        self.__id = novo_id
+
+        return f'{self.__id}'
+            
+
     def getIp(self):
         return self.__ip
         #return f'192.168.168.0.' + str(self.__class__.__ip)
