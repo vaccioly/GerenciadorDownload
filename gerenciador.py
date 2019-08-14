@@ -1,6 +1,6 @@
-from computador import *
-from recurso import *
-from jobs import *
+from GerenciadorDownload.recurso import *
+from GerenciadorDownload.computador import *
+from GerenciadorDownload.jobs import *
 import csv
 
 class gerenciadorException(Exception):
@@ -48,7 +48,6 @@ class Gerenciador:
         else:
             for c in self.computadores:
                 print (c)
-                print('')
       
     def exportarComputador(self, nome ='Teste'):
         with open(r"~/GerenciadorDownload/Exportados/"+ nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
@@ -122,30 +121,29 @@ class Gerenciador:
 
 # JOBS
     def povoamento(self):
-        if len(self.jobs) == 0:
+        if (len(self.jobs)) == 0:
             print ('Jobs não associados, ou vazia')
         else:
-            pv = self.__link / len(self.jobs)
-            #print(pv)
+            pv = (self.__link * 1024) / (len(self.jobs))
             return float(pv)
 
     def cadastrarJobs(self, pc, arquivo):
-        #try:
-        #pv = self.__link / (len(self.jobs))
-        job = Job(self.computadores[pc],self.recursos[arquivo])
-        self.jobs.append(job)
-        return self.jobs
-        #except IndexError:
-        #    raise gerenciadorException (f'Tipo de cadastro inválido!')
-        #except:
-        #    raise
+        try:
+            temp1 = 1- pc
+            temp2 = 1 - arquivo
+            job = Job(self.computadores[temp1],self.recursos[temp2])
+            self.jobs.append(job)
+            return self.jobs
+        except IndexError:
+            raise gerenciadorException (f'Tipo de cadastro inválido!')
+        except:
+            raise
     
     def listarJobs(self):
         if len(self.jobs)==0:
             print('Jobs não cadastrados')
         for j in self.jobs:
             print (j)
-            print('')
 
     def exportarJobs(self,arquivo):
         with open(r"/home/viniciusaccioly/GerenciadorDownload/Exportados/" + arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
