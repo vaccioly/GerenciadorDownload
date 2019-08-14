@@ -1,7 +1,7 @@
 from computador import Computador
 
 class Recurso(Computador):
-    def __init__(self, arquivo= None, tamanho= None):
+    def __init__(self, arquivo, tamanho):
         Computador.__init__(self)
         self.__recurso = arquivo
         self.__tamanho = tamanho
@@ -23,7 +23,8 @@ class Recurso(Computador):
         return f'{self.__tamanho}'
 
     def __str__(self):
-        return f'Arquivo: {self.__recurso}\nTamanho: {self.__tamanho} Kbps'
+        return f' {self.__recurso}; {self.__tamanho}'
+        #return f'Arquivo: {self.__recurso}\nTamanho: {self.__tamanho} Kbps'
         #print (f'Descricao{self.__recurso} Tamanho {self.__tamanho} Kbs')
 
 

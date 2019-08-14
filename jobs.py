@@ -32,7 +32,5 @@ class Job:
         pass
 
     def __str__(self):
-        return f'Jobs: {self.__job}\nRecursos: {self.__arquivo}\nBanda: {self.__banda} Kbs'
-    
-    
-
+        # return f'Jobs: {self.__job}\nRecursos: {self.__arquivo}\nBanda: {self.__banda} Kbs'
+        return f'{self.__job}; {self.__arquivo}'
