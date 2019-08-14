@@ -13,15 +13,29 @@ while True:
 		opcao = int(input('Digite uma opção: '))
 		# 1- Cadastrar banda larga
 		if opcao == 1:
-			#link = Gerenciador()
-			valor = float(input('Velocidade que deseja cadastrar em Mbps: '))
-			adm.setLink(valor)
-			print(adm.getLink())
-			print("Banda Cadastrada com sucesso!")
-			time.sleep(3)
-			clear()
-			continue
-
+			menuBandaLarga()
+			opcao = int(input('Digite uma opção: '))
+			# Cadastrar banda larga
+			if opcao == 1:
+				valor = float(input('Velocidade que deseja cadastrar em Mbps: '))
+				adm.setLink(valor)
+				print("Banda larga cadastrada com sucesso!")
+				time.sleep(3)
+				clear()
+			# continue
+			# Listar banda larga cadastrada
+			elif opcao == 2:
+				print(adm.getLink())
+				time.sleep(3)
+				clear()
+			# continue
+			# Voltar ao menu anterior
+			elif opcao == 0:
+				print('Voltando ao menu anterior!')
+				menuComputador()
+				time.sleep(3)
+				clear()
+		# continue
 		# 2 - Computadores
 		if opcao == 2:
 			menuComputador()
@@ -120,8 +134,7 @@ while True:
 			#1 - Cadastrar Jobs
 			if opcao == 1:
 				idpc = int(input('Id do computador: '))
-				#tamanho = float(input('Tamanho do arquivo em kbs:  '))
-				re = int(input('Recurso deseja cadastrar: '))
+				re = int(input('Id Recurso: '))
 				adm.cadastrarJobs(idpc, re)
 				print('Jobs cadastrado com sucesso!')
 				time.sleep(3)
@@ -185,7 +198,11 @@ while True:
 		print('Nome não definido, favor verifique a ortografia e tente novamente!')
 		time.sleep(3)
 		clear()
-	#except:
-	#	print('Nossos engenheiros irão analisar o problema!')
-	#	time.sleep(3)
-	#	clear()
+	except KeyboardInterrupt:
+		print('Voltar ao menu Principal!')
+		time.sleep(3)
+		clear()
+	except:
+		print('Nossos engenheiros irão analisar o problema!')
+		time.sleep(3)
+		clear()
