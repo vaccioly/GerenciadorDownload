@@ -14,6 +14,14 @@ def menu():
 0 - Sair do programa;''')
   print('-'*35)
 
+def menuBandaLarga():
+  print('''Funçõs Banda larga
+  1 - Cadastrar banda larga
+  2 - Listar banda larga
+  0 - Voltar ao menu anterior''')
+  print('-' * 35)
+
+
 def menuComputador():
   print(''' Funções para Computadores
   1 - Cadastrar.
