@@ -1,6 +1,6 @@
-from GerenciadorDownload.recurso import *
-from GerenciadorDownload.computador import *
-from GerenciadorDownload.jobs import *
+from recurso import *
+from computador import *
+from jobs import *
 import csv
 
 class gerenciadorException(Exception):
@@ -50,7 +50,7 @@ class Gerenciador:
                 print (c)
       
     def exportarComputador(self, nome ='Teste'):
-        with open(r"~/GerenciadorDownload/Exportados/"+ nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Identificação', 'IP', 'Descrição']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             for pc in self.computadores:
@@ -60,7 +60,7 @@ class Gerenciador:
     def importarComputador(self, arquivo):
         try:
             matriz = []
-            with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv','r') as csvfile:
+            with open(arquivo + '.csv','r') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     matriz.append(row)
@@ -94,7 +94,7 @@ class Gerenciador:
                 print (c)
     
     def exportarRecurso(self,arquivo):
-        with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Descrição', 'Tamanho']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             #arquivos.writeheader()
@@ -104,7 +104,7 @@ class Gerenciador:
     def importarRecurso(self,arquivo):
         try:
             documentos = []
-            with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv','r', newline='') as csvfile:
+            with open(arquivo + '.csv','r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     documentos.append(row)
@@ -146,7 +146,7 @@ class Gerenciador:
             print (j)
 
     def exportarJobs(self,arquivo):
-        with open(r"/home/viniciusaccioly/GerenciadorDownload/Exportados/" + arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(arquivo + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Trabalhos', 'Arquivo','Banda']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             #arquivos.writeheader()
@@ -157,7 +157,7 @@ class Gerenciador:
     def importarJobs(self,arquivo):
         try:
             trabalhos =[]
-            with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv','r', newline='') as csvfile:
+            with open(arquivo + '.csv','r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     trabalhos.append(row)
