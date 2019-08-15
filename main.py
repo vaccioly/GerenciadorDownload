@@ -1,10 +1,11 @@
 from gerenciador import *
 from Menu import *
+from listacircular import *
 import time
 #Esse é o programa principal do projeto do gerenciador de downloads
 computadores = []
 recursos = []
-jobs= []
+jobs_lista = []
 adm = Gerenciador()
 while True:
 	try:
@@ -133,9 +134,27 @@ while True:
 			opcao = int(input('Digite uma opção: '))
 			#1 - Cadastrar Jobs
 			if opcao == 1:
-				idpc = int(input('Id do computador: '))
-				re = int(input('Id Recurso: '))
-				adm.cadastrarJobs(idpc, re)
+				print(adm.listarRecurso())
+				opcao = input('digite qual recurso quer (1,2,3...): ')
+				for i in recursos:
+					if opcao == i:
+						computador = computadores[i]
+
+				print(adm.listarComputadores())
+
+				opcao = input('digite qual pc quer (1,2,3...): ')
+				for i in recursos:
+					if opcao == i:
+						recurso = recursos[i]
+
+
+				
+
+				
+
+				
+				novo_job = adm.cadastrarJobs(recurso, pc)
+				jobs_lista.append(novo_job)
 				print('Jobs cadastrado com sucesso!')
 				time.sleep(3)
 				clear()
@@ -172,7 +191,13 @@ while True:
 
 		#5 - Iniciar downloads
 		if opcao == 5:
-			print('Downloads iniciados')
+			banda = adm.getLink()
+			jobs_simulacao = listacircular
+
+			adm.iniciarDownloads(jobs_simulacao,banda,jobs_lista)
+
+			
+
 
 		# 0 - sair (Encerra o sistema)
 		if opcao == 0:

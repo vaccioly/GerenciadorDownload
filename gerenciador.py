@@ -1,7 +1,11 @@
-from GerenciadorDownload.recurso import *
-from GerenciadorDownload.computador import *
-from GerenciadorDownload.jobs import *
+from recurso import *
+from computador import *
+from jobs import *
+from listacircular import *
 import csv
+import time
+
+listacircular =LinkedList()
 
 class gerenciadorException(Exception):
         """Classe de exceção lançada quando uma violação de acesso aos elementos
@@ -50,7 +54,7 @@ class Gerenciador:
                 print (c)
       
     def exportarComputador(self, nome ='Teste'):
-        with open(r"~/GerenciadorDownload/Exportados/"+ nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        with open(r"C:\Users\mathe\OneDrive\Documentos\projetogerenciadordedowload\GerenciadorDownload\Exportados"+ nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
             cabecalho = ['Identificação', 'IP', 'Descrição']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             for pc in self.computadores:
@@ -60,7 +64,7 @@ class Gerenciador:
     def importarComputador(self, arquivo):
         try:
             matriz = []
-            with open(r"~/GerenciadorDownload/Exportados/"+arquivo + '.csv','r') as csvfile:
+            with open(r"C:\Users\mathe\OneDrive\Documentos\projetogerenciadordedowload\GerenciadorDownload\Exportados"+arquivo + '.csv','r') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     matriz.append(row)
@@ -119,25 +123,41 @@ class Gerenciador:
         except:
             raise
 
-# JOBS
-    def povoamento(self):
+   # def povoamento(self):
+    def divideBanda(self):
+
         if (len(self.jobs)) == 0:
             print ('Jobs não associados, ou vazia')
         else:
             pv = (self.__link * 1024) / (len(self.jobs))
             return float(pv)
+# JOBS
 
-    def cadastrarJobs(self, pc, arquivo):
+
+    def cadastrarJobsv1(self, pc, arquivo):
         try:
             temp1 = 1- pc
             temp2 = 1 - arquivo
             job = Job(self.computadores[temp1],self.recursos[temp2])
-            self.jobs.append(job)
+            self.jobs(job)
             return self.jobs
         except IndexError:
             raise gerenciadorException (f'Tipo de cadastro inválido!')
         except:
             raise
+
+    def cadastrarJobs(recurso,pc):
+        try:
+            novo_job = jobs(recurso,pc)
+            return novo_job
+        except IndexError:
+            raise gerenciadorException (f'Tipo de cadastro inválido!')
+        except:
+            raise
+
+        
+
+
     
     def listarJobs(self):
         if len(self.jobs)==0:
@@ -171,6 +191,49 @@ class Gerenciador:
             raise gerenciadorException(f'Arquivo não definido.')
         except:
             raise
+
+    def iniciarDownloads(jobs_simulacao,banda,jobs_lista):
+        
+        banda_dividida = self.divideBanda()
+
+        
+
+        while len(jobs_lista) != 0:
+            job = jobs.pop()
+            job.setLink(banda_dividida)
+            jobs_simulacao.inserirFinal(job)
+            jobs_em_execucao = jobs_simulacao.
+
+        print(f'banda para cada pc é : {banda_dividida}')
+        
+       
+        job_da_rodada = jobs_simulacao.cycle()
+        print(f'falta ser baixado: {job_da_rodada.decrementa} do HOST : {self.job_da_rodada.__pc}')
+        while jobs_em_execucao != True:
+
+            clear()
+            print('pressione qualquer tecla pra continuar...')
+            input()
+
+
+            job_da_rodada = listacircular.cycle()
+            if job_da_rodada.__concluido == True:
+                index_da_rodada = listacircula.getIndexDoElemento()
+                listacircular.remover(index_da_rodada)
+            else:
+                print(f'falta ser baixado: {job_da_rodada.decrementa} do HOST : {self.job_da_rodada.__pc}')
+
+            
+
+
+
+        
+
+
+
+
+
+        
     
    
                 

@@ -1,8 +1,7 @@
 from computador import Computador
 
-class Recurso(Computador):
+class Recurso():
     def __init__(self, arquivo, tamanho):
-        Computador.__init__(self)
         self.__recurso = arquivo
         self.__tamanho = tamanho
         
@@ -29,6 +28,7 @@ class Recurso(Computador):
 
 
 """ teste
+
 a = Recurso('circulo.jpg',100)
 
 a.setIp('192.168.0.1')
