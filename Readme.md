@@ -1,12 +1,12 @@
-#Projeto exclusivo para fins academico!
+# Projeto exclusivo para fins academico!
 
-#Gerenciador de Downloads!
+# Gerenciador de Downloads!
 
-#Alunos:
+## Alunos:
 - Accioly,Vinicius
 - Barros,Matheus
 
-#Menu:
+### Menu:
 - Cadastrar os computadores
 - Validaçoes necessarias " Mensagens de dialogos usuarios/ sistema e validaçoes de dados":
 - Cadastro de banda de internet:
