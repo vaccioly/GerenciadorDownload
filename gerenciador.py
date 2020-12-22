@@ -1,10 +1,7 @@
 from recurso import *
 from computador import *
 from jobs import *
-<<<<<<< HEAD
 from listacircular import *
-=======
->>>>>>> 32394c9583b120df1866ce2364d1c7d9172a100b
 import csv
 import time
 
@@ -57,11 +54,7 @@ class Gerenciador:
                 print (c)
       
     def exportarComputador(self, nome ='Teste'):
-<<<<<<< HEAD
-        with open(r"C:\Users\mathe\OneDrive\Documentos\projetogerenciadordedowload\GerenciadorDownload\Exportados"+ nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
-=======
         with open(nome + '.csv', 'a', newline='', encoding='utf-8') as csvfile:
->>>>>>> 32394c9583b120df1866ce2364d1c7d9172a100b
             cabecalho = ['Identificação', 'IP', 'Descrição']
             arquivos = csv.DictWriter(csvfile, fieldnames=cabecalho)
             for pc in self.computadores:
@@ -71,11 +64,7 @@ class Gerenciador:
     def importarComputador(self, arquivo):
         try:
             matriz = []
-<<<<<<< HEAD
-            with open(r"C:\Users\mathe\OneDrive\Documentos\projetogerenciadordedowload\GerenciadorDownload\Exportados"+arquivo + '.csv','r') as csvfile:
-=======
             with open(arquivo + '.csv','r') as csvfile:
->>>>>>> 32394c9583b120df1866ce2364d1c7d9172a100b
                 reader = csv.reader(csvfile)
                 for row in reader:
                     matriz.append(row)
@@ -213,7 +202,7 @@ class Gerenciador:
             job = jobs.pop()
             job.setLink(banda_dividida)
             jobs_simulacao.inserirFinal(job)
-            jobs_em_execucao = jobs_simulacao.
+            jobs_em_execucao = jobs_simulacao()
 
         print(f'banda para cada pc é : {banda_dividida}')
         

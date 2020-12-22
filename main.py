@@ -131,35 +131,10 @@ while True:
 			menuJobs()
 			trabalho = int(input('Digite uma opção: '))
 			#1 - Cadastrar Jobs
-<<<<<<< HEAD
-			if opcao == 1:
-				print(adm.listarRecurso())
-				opcao = input('digite qual recurso quer (1,2,3...): ')
-				for i in recursos:
-					if opcao == i:
-						computador = computadores[i]
-
-				print(adm.listarComputadores())
-
-				opcao = input('digite qual pc quer (1,2,3...): ')
-				for i in recursos:
-					if opcao == i:
-						recurso = recursos[i]
-
-
-				
-
-				
-
-				
-				novo_job = adm.cadastrarJobs(recurso, pc)
-				jobs_lista.append(novo_job)
-=======
 			if trabalho == 1:
 				idComputador = int(input('Id do computador: '))
 				idRecurso = int(input('Id Recurso: '))
 				adm.cadastrarJobs(idComputador, idRecurso)
->>>>>>> 32394c9583b120df1866ce2364d1c7d9172a100b
 				print('Jobs cadastrado com sucesso!')
 				time.sleep(3)
 				clear()
@@ -196,7 +171,6 @@ while True:
 
 		#5 - Iniciar downloads
 		if opcao == 5:
-<<<<<<< HEAD
 			banda = adm.getLink()
 			jobs_simulacao = listacircular
 
@@ -204,12 +178,6 @@ while True:
 
 			
 
-=======
-			print('Downloads iniciados')
-			time.sleep(3)
-			clear()
-			continue
->>>>>>> 32394c9583b120df1866ce2364d1c7d9172a100b
 
 		# 0 - sair (Encerra o sistema)
 		if opcao == 0:
